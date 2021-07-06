@@ -1,0 +1,56 @@
+1)  SELECT `students` . `name` AS 'studente' , `degrees`.`name` AS 'nome_corso'
+    FROM `degrees`
+    INNER JOIN `students`
+    ON `students`. `degree_id` = `degrees` . `id`
+    WHERE `degrees` . `name` = 'Corso di Laurea in Economia';
+
+
+2)  SELECT `departments`.`name` AS 'dipartimento' ,`degrees`.`name` AS 'corso_laurea'
+    FROM `departments`
+    INNER JOIN `degrees`
+    ON `departments` . `id` = `degrees` . `department_id`
+    WHERE `departments`.`name` = 'Dipartimento di Neuroscienze';
+
+
+3)  SELECT `courses` .`name`
+    FROM `courses`
+    INNER JOIN `course_teacher`
+    ON `courses`.`id` = `course_teacher` . `course_id`
+    INNER JOIN `teachers`
+    ON `teachers` . `id` = `course_teacher` . `teacher_id`
+    WHERE `teachers`.`name` = 'Fulvio' AND `teachers`.`surname` = 'Amato';
+
+
+4)  SELECT `students` .`name` AS 'Nome' ,`students`.`surname` AS 'Cognome', `degrees`.`name` AS 'corso_laurea', `departments`.`name`AS 'dipartimento'
+    FROM `departments`
+    INNER JOIN `degrees`
+    ON `departments` .`id` = `degrees` . `department_id`
+    INNER JOIN `students`
+    ON `students`.`degree_id` = `degrees` . `department_id`  
+    ORDER BY `students`.`name` ASC, `students` . `surname` ASC;
+
+
+5)  select `degrees`.`name` AS 'corso_laurea', `courses`.`name` AS 'corso' , `teachers`.`name`AS 'nome' , `teachers`.`surname`  AS 'cognome'
+    FROM `degrees`
+    INNER JOIN `courses`
+    ON `degrees`.`id` = `courses`.`degree_id`
+    INNER JOIN `course_teacher`
+    ON `course_teacher`.`course_id` = `courses`.`id`
+    INNER JOIN `teachers`
+    ON `teachers`.`id` = `course_teacher`.`teacher_id`
+
+
+6)  SELECT `teachers`.`name`, `teachers`.`surname`, `departments`.`name`
+    FROM`departments`
+    INNER JOIN `degrees`
+    ON `departments`.`id` = `degrees`.`department_id`
+    INNER JOIN `courses`
+    ON `courses`.`degree_id` = `degrees`.`id`
+    INNER JOIN `course_teacher` 
+    ON `course_teacher`.`course_id` = `courses` . `id`
+    INNER JOIN `teachers`
+    ON `teachers`.`id` = `course_teacher`.`teacher_id`
+    WHERE `departments`.`name` = 'Dipartimento di Matematica'
+
+
+7)
