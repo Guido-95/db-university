@@ -21,13 +21,13 @@
     WHERE `teachers`.`name` = 'Fulvio' AND `teachers`.`surname` = 'Amato';
 
 
-4)  SELECT `students` .`name` AS 'Nome' ,`students`.`surname` AS 'Cognome', `degrees`.`name` AS 'corso_laurea', `departments`.`name`AS 'dipartimento'
-    FROM `departments`
-    INNER JOIN `degrees`
-    ON `departments` .`id` = `degrees` . `department_id`
+4) 	SELECT `students`.`id`,`students` .`surname` AS 'Cognome' ,`students`.`name` AS 'Nome', `degrees`.`name` AS 'corso_laurea', `departments`.`name` AS 'dipartimento'
+   	FROM `degrees`
     INNER JOIN `students`
-    ON `students`.`degree_id` = `degrees` . `department_id`  
-    ORDER BY `students`.`name` ASC, `students` . `surname` ASC;
+    ON `students`.`degree_id` = `degrees` . `id`
+    INNER JOIN `departments`
+    ON `departments`.`id` = `degrees` . `department_id`
+    ORDER BY `students`.`surname`,`students`.`name`
 
 
 5)  select `degrees`.`name` AS 'corso_laurea', `courses`.`name` AS 'corso' , `teachers`.`name`AS 'nome' , `teachers`.`surname`  AS 'cognome'
@@ -53,4 +53,11 @@
     WHERE `departments`.`name` = 'Dipartimento di Matematica'
 
 
-7)
+7)  SELECT `exams`.`course_id`,`exam_student`.`student_id` , COUNT(*) AS tentativi,`students`.`name`,`students`.`surname`
+    FROM `students`
+    INNER JOIN `exam_student`
+    ON `students`.`id` = `exam_student`.`student_id`
+    INNER JOIN `exams`
+    ON `exams`.`id` = `exam_student`.`exam_id`
+    GROUP BY `exams`.`course_id`,`exam_student`.`student_id`
+    ORDER BY `exam_student`.`student_id`
