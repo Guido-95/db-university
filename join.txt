@@ -40,7 +40,7 @@
     ON `teachers`.`id` = `course_teacher`.`teacher_id`
 
 
-6)  SELECT `teachers`.`name`, `teachers`.`surname`, `departments`.`name`
+6)  SELECT DISTINCT `teachers`.`name`, `teachers`.`surname`, `departments`.`name`
     FROM`departments`
     INNER JOIN `degrees`
     ON `departments`.`id` = `degrees`.`department_id`
