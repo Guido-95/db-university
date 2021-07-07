@@ -53,11 +53,12 @@
     WHERE `departments`.`name` = 'Dipartimento di Matematica'
 
 
-7)  SELECT `exams`.`course_id`,`exam_student`.`student_id` , COUNT(*) AS tentativi,`students`.`name`,`students`.`surname`
+7)  SELECT `exams`.`course_id`,`exam_student`.`student_id` , COUNT(*) AS tentativi, MAX(`exam_student`.`vote`)AS voto_massimo, `students`.`name`,`students`.`surname`
     FROM `students`
     INNER JOIN `exam_student`
     ON `students`.`id` = `exam_student`.`student_id`
     INNER JOIN `exams`
     ON `exams`.`id` = `exam_student`.`exam_id`
     GROUP BY `exams`.`course_id`,`exam_student`.`student_id`
+   	HAVING `voto_massimo` >= 18
     ORDER BY `exam_student`.`student_id`
